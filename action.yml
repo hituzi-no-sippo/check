@@ -6,6 +6,10 @@ inputs:
     description: 'Specific dprint version to use (ex. 0.30.3)'
     required: false
     default: ''
+  file-patterns:
+    description: 'Specific target file patterns'
+    required: false
+    default: ''
 runs:
   using: 'composite'
   steps:
@@ -16,7 +20,7 @@ runs:
         echo "/home/runner/.dprint/bin" >> $GITHUB_PATH
     - name: Check formatting
       shell: bash
-      run: ~/.dprint/bin/dprint check
+      run: ~/.dprint/bin/dprint check ${{ inputs.file-patterns }}
 branding:
   icon: 'check-circle'
   color: 'gray-dark'
